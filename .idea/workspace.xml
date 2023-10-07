@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="00091c1b-0aa1-4e3c-b1b5-4eb1444bd345" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/random-game/2048/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/random-game/2048/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/random-game/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/random-game/styles.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2TLXZVnKidSLPmUcJUto4Pj9lCo" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "random-game",
+    "last_opened_file_path": "/Users/karzhen/Desktop/My way into IT/RS School/rsschool-cv/karzhen-JSFEPRESCHOOL2023Q2",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/random-game" />
+      <recent name="$PROJECT_DIR$/image-galery" />
+      <recent name="$PROJECT_DIR$/audioPlayer" />
+      <recent name="$PROJECT_DIR$/library/images" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="00091c1b-0aa1-4e3c-b1b5-4eb1444bd345" name="Changes" comment="" />
+      <created>1690823391060</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1690823391060</updated>
+      <workItem from="1690823392225" duration="35657000" />
+      <workItem from="1691663313970" duration="176000" />
+      <workItem from="1691665501921" duration="23780000" />
+      <workItem from="1692437027936" duration="365000" />
+      <workItem from="1692908452775" duration="1825000" />
+      <workItem from="1694175801315" duration="46508000" />
+      <workItem from="1694626375767" duration="2817000" />
+      <workItem from="1695486600860" duration="583000" />
+      <workItem from="1695487191574" duration="2981000" />
+      <workItem from="1695492144045" duration="105000" />
+      <workItem from="1695492334178" duration="251000" />
+      <workItem from="1695492590935" duration="12347000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="library-part3" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,14 @@
+:root {
+    --back-color: #080C25;
+    --blue-color: #161E35;
+    --medium-color: #293659;
+    --active-color: #3071E7;
+    --hover-color: #A6B2EC;
+}
+/* Брал цветовую гамму отсюда -> https://cliffe.ru/res/8_dark_color_schemes/ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}

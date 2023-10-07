@@ -1,0 +1,84 @@
+@font-face {
+    font-family: 'Rostov';
+    src: url('../fonts/rostov.ttf') format('truetype');
+}
+
+:root {
+    --back-color: #080C25;
+    --blue-color: #161E35;
+    --medium-color: #293659;
+    --active-color: #3071E7;
+    --hover-color: #A6B2EC;
+    --color-2: #7C7C7C;
+    --color-4: #ffd8bb;
+    --color-8: #7396ed;
+    --color-16: #A68800;
+    --color-32: #edd073;
+    --color-64: #269926;
+    --color-128: #8BB42D;
+    --color-256: #BF3030;
+    --color-512: #6949D7;
+    --color-1024: #FF7373;
+    --color-2048: #39E639;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--back-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#game-board {
+    --cell-size: 20vmin;
+    --cell-gap: 2vmin;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, var(--cell-size));
+    grid-template-rows: repeat(4, var(--cell-size));
+    gap: var(--cell-gap);
+    border-radius: 1vmin;
+}
+
+.cell {
+    background-color: var(--medium-color);
+    border-radius: 1vmin;
+}
+
+.tile {
+    --x: 0;
+    --y: 0;
+    position: absolute;
+    top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)));
+    left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border-radius: 1vmin;
+    font-family: "Rostov", sans-serif;
+    font-size: 10vmin;
+    background-color: var(--color-4);
+    transition: .3s;
+    animation: spawn;
+}
+
+@keyframes spawn {
+    0% {
+        opacity: 0.2;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
