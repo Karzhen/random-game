@@ -67,7 +67,7 @@ body {
     font-family: "Rostov", sans-serif;
     font-size: 10vmin;
     background-color: var(--color-4);
-    transition: .3s;
+    transition: .1s;
     animation: spawn;
 }
 
