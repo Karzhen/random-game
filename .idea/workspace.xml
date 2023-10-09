@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00091c1b-0aa1-4e3c-b1b5-4eb1444bd345" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/random-game/2048/cell.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/random-game/2048/grid.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/random-game/2048/script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/random-game/2048/tile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/random-game/2048/menu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/pull_request_template.md" beforeDir="false" afterPath="$PROJECT_DIR$/.github/pull_request_template.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/random-game/2048/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/random-game/2048/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/random-game/2048/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/random-game/2048/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/random-game/2048/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/random-game/2048/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

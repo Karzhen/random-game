@@ -1,12 +1,57 @@
 import { Grid } from "./grid.js";
 import { Tile } from "./tile.js";
+import { Menu } from "./menu.js";
 
 const gameBoard = document.getElementById('game-board'),
-    menu = document.getElementById('menu');
+    gameMenu = document.getElementById('menu');
 
 const grid = new Grid(gameBoard);
 grid.getEmptyCells().linkTile(new Tile(gameBoard));
 grid.getEmptyCells().linkTile(new Tile(gameBoard));
+
+// Create the menu
+const menu = new Menu(gameMenu, restartGame, undoLastAction);
+
+let timerInterval;
+let secondsElapsed = 0;
+
+function startTimer() {
+    timerInterval = setInterval(() => {
+        secondsElapsed++;
+        menu.setTimer(secondsElapsed);
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+function restartGame() {
+    // Reset game logic here
+    // ...
+
+    // Reset timer
+    stopTimer();
+    secondsElapsed = 0;
+    menu.setTimer(secondsElapsed);
+    startTimer();
+}
+
+function undoLastAction() {
+    // Undo last action logic here
+    // ...
+}
+
+// Start the timer when the game begins
+startTimer();
+
+
+
+
+
+
+
+
 setupInput();
 
 function setupInput() {
