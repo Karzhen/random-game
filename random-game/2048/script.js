@@ -1,57 +1,89 @@
+import { Menu } from "./menu.js";
 import { Grid } from "./grid.js";
 import { Tile } from "./tile.js";
-import { Menu } from "./menu.js";
+
+let timerInterval;
+let secondsElapsed = 0;
 
 const gameBoard = document.getElementById('game-board'),
     gameMenu = document.getElementById('menu');
+
+const menu = new Menu(gameMenu, restartGame, backToPreviousMove);
+const gameStateStack = [];
 
 const grid = new Grid(gameBoard);
 grid.getEmptyCells().linkTile(new Tile(gameBoard));
 grid.getEmptyCells().linkTile(new Tile(gameBoard));
 
-// Create the menu
-const menu = new Menu(gameMenu, restartGame, undoLastAction);
-
-let timerInterval;
-let secondsElapsed = 0;
-
-function startTimer() {
-    timerInterval = setInterval(() => {
-        secondsElapsed++;
-        menu.setTimer(secondsElapsed);
-    }, 1000);
-}
-
-function stopTimer() {
-    clearInterval(timerInterval);
-}
-
 function restartGame() {
-    // Reset game logic here
-    // ...
+    gameStateStack.length = 0;
 
-    // Reset timer
+    grid.cells.forEach(cell => {
+        if (cell.linkedTile) {
+            cell.linkedTile.removeFromDOM();
+            cell.unlinkTile();
+        }
+    });
+    grid.cells.forEach(cell => cell.unlinkTile());
+
+    grid.getEmptyCells().linkTile(new Tile(gameBoard));
+    grid.getEmptyCells().linkTile(new Tile(gameBoard));
+    // Перезапуск таймера
     stopTimer();
     secondsElapsed = 0;
     menu.setTimer(secondsElapsed);
     startTimer();
 }
 
-function undoLastAction() {
-    // Undo last action logic here
-    // ...
+function backToPreviousMove() {
+    console.log(gameStateStack);
+    if (gameStateStack.length > 0) {
+        const previousState = gameStateStack.pop(); // Получить предыдущее состояние
+        gameStateStack.length = 0 // Удалить текущее состояние
+
+        // Восстановление прежнего состояния игрового поля
+        grid.cells.forEach(cell => {
+            const prevStateCell = previousState.find(prevCell =>
+                prevCell.x === cell.x && prevCell.y === cell.y
+            );
+
+            if (prevStateCell) {
+                if (prevStateCell.value > 0) {
+                    // Восстановление плитки
+                    const tile = new Tile(gameBoard);
+                    tile.setXY(prevStateCell.x, prevStateCell.y);
+                    tile.setValue(prevStateCell.value);
+                    cell.linkTile(tile);
+                } else {
+                    // Удалить имеющуюся плитку
+                    if (cell.linkedTile) {
+                        cell.linkedTile.removeFromDOM();
+                        cell.unlinkTile();
+                    }
+                }
+            } else {
+                // Удалить имеющуюся плитку
+                if (cell.linkedTile) {
+                    cell.linkedTile.removeFromDOM();
+                    cell.unlinkTile();
+                }
+            }
+        });
+    }
 }
 
-// Start the timer when the game begins
+function saveGameState() {
+    gameStateStack.length = 0;
+    const gameState = grid.cells.map(cell => ({
+        x: cell.x,
+        y: cell.y,
+        value: cell.linkedTile ? cell.linkedTile.value : 0,
+    }));
+    gameStateStack.push(gameState);
+}
+
+// Запуск таймера при начале игры
 startTimer();
-
-
-
-
-
-
-
-
 setupInput();
 
 function setupInput() {
@@ -59,13 +91,14 @@ function setupInput() {
 }
 
 async function handleInput(event) {
-    console.log(event.key);
+    console.log(gameStateStack);
     switch (event.key) {
         case "ArrowUp":
             if (!canMoveUp()) {
                 setupInput();
                 return;
             }
+            saveGameState();
             await moveUp();
             break;
 
@@ -74,6 +107,7 @@ async function handleInput(event) {
                 setupInput();
                 return;
             }
+            saveGameState();
             await moveDown();
             break;
 
@@ -82,6 +116,7 @@ async function handleInput(event) {
                 setupInput();
                 return;
             }
+            saveGameState();
             await moveLeft();
             break;
 
@@ -90,6 +125,7 @@ async function handleInput(event) {
                 setupInput();
                 return;
             }
+            saveGameState();
             await moveRight();
             break;
 
@@ -106,9 +142,6 @@ async function handleInput(event) {
         alert("Try again");
         return;
     }
-
-    // if
-
     setupInput();
 }
 
@@ -209,4 +242,15 @@ function canMoveInsideGroup(groupCells) {
         const targetCell = groupCells[index - 1];
         return targetCell.canAccept(cell.linkedTile);
     })
+}
+
+function startTimer() {
+    timerInterval = setInterval(() => {
+        secondsElapsed++;
+        menu.setTimer(secondsElapsed);
+    }, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
 }

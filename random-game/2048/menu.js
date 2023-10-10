@@ -57,6 +57,5 @@ export class Menu {
 function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const secondsRemainder = Math.floor(seconds % 60);
-    const formattedTime = `${minutes}:${secondsRemainder.toString().padStart(2, '0')}`;
-    return formattedTime;
+    return `${minutes}:${secondsRemainder.toString().padStart(2, '0')}`;
 }
