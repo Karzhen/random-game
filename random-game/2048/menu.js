@@ -10,23 +10,25 @@ export class Menu {
         this.restartCallback = restartCallback;
         this.undoCallback = undoCallback;
 
-        // Create left-zone for timer
+        // Создание левой зоны для таймера
         this.leftZone = document.createElement('div');
         this.leftZone.classList.add('left-zone');
         this.menuElement.appendChild(this.leftZone);
 
-        // Create timer element
+        // Создание элемента таймера
         this.timerElement = document.createElement('div');
         this.timerElement.classList.add('timer');
+        this.timerElement.classList.add('text');
         this.leftZone.appendChild(this.timerElement);
 
-        // Create right-zone for buttons
+        // Создание правой зоны для кнопок
         this.rightZone = document.createElement('div');
         this.rightZone.classList.add('right-zone');
         this.menuElement.appendChild(this.rightZone);
 
-        // Create "Restart" button
+        // Создание кнопки "Restart"
         this.restartButton = document.createElement('button');
+        this.restartButton.classList.add('text');
         this.restartButton.textContent = 'Restart';
         this.restartButton.addEventListener('click', () => {
             if (typeof this.restartCallback === 'function') {
@@ -35,8 +37,9 @@ export class Menu {
         });
         this.rightZone.appendChild(this.restartButton);
 
-        // Create "Undo" button
+        // Создание кнопки "Undo"
         this.undoButton = document.createElement('button');
+        this.undoButton.classList.add('text');
         this.undoButton.textContent = 'Undo';
         this.undoButton.addEventListener('click', () => {
             if (typeof this.undoCallback === 'function') {

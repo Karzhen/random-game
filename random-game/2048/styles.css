@@ -9,6 +9,7 @@
     --medium-color: #293659;
     --active-color: #3071E7;
     --hover-color: #A6B2EC;
+    --footer-color: #a8a8a8;
     --color-2: #7C7C7C;
     --color-4: #ffd8bb;
     --color-8: #7396ed;
@@ -31,13 +32,63 @@
 body {
     background-color: var(--back-color);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
+.wrapper {
+    flex-grow: 1; /* Растягиваем wrapper, чтобы заполнить оставшееся пространство */
+}
+
+#menu {
+    height: 20vmin;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text {
+    font-family: "Sofia Sans", serif;
+    font-size: 5vmin;
+    color: antiquewhite;
+}
+
+.left-zone {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.right-zone {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.right-zone > * {
+    margin-bottom: 2vmin;
+}
+
+button {
+    background-color: var(--medium-color);
+    border: 1px solid #7C7C7C;
+    border-radius: 1vmin;
+    padding: .4vmin;
+    color: antiquewhite;
+    transition: 1s;
+}
+
+button:hover {
+    background-color: var(--hover-color);
+    transition: 1s;
+}
+
 #game-board {
-    --cell-size: 20vmin;
+    --cell-size: 17vmin;
     --cell-gap: 2vmin;
     position: relative;
     display: grid;
@@ -64,11 +115,29 @@ body {
     width: var(--cell-size);
     height: var(--cell-size);
     border-radius: 1vmin;
-    font-family: "Rostov", sans-serif;
+    font-family: "Sofia Sans", serif;
+    font-weight: bold;
     font-size: 10vmin;
     background-color: var(--color-4);
     transition: .1s;
     animation: spawn;
+}
+
+footer {
+    background-color: var(--footer-color);
+    width: 100vmin;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer > .text {
+    color: black;
+    font-size: 2vmin;
+}
+
+img {
+    max-height: 2vmin;
 }
 
 @keyframes spawn {
