@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'Rostov';
-    src: url('../fonts/rostov.ttf') format('truetype');
+    font-family: 'Sofia Sans';
+    src: url('../fonts/Sofia_Sans/static/SofiaSans-Bold.ttf') format('truetype');
 }
 
 :root {
@@ -40,6 +40,35 @@ body {
 
 .wrapper {
     flex-grow: 1; /* Растягиваем wrapper, чтобы заполнить оставшееся пространство */
+}
+
+.rules {
+    width: 20vmin;
+    position: fixed;
+    top: 20vmin;
+    left: 1vmin;
+}
+
+/*.rules__table {*/
+/*    !*list-style: square;*!*/
+/*    list-style-type: none;*/
+/*    padding-left: 0;*/
+/*}*/
+
+/*.rules__table > li::before {*/
+/*    content: "¬";*/
+/*    margin-right: 1vmin;*/
+/*}*/
+
+.mini-text{
+    font-family: "Sofia Sans", serif;
+    font-size: 2vmin;
+    color: antiquewhite;
+}
+
+.bold {
+    font-size: 3vmin;
+    color: var(--active-color);
 }
 
 #menu {
@@ -189,7 +218,7 @@ img {
     color: var(--back-color);
 }
 
-#ok-button {
+#ok-button, #lose-button {
     background: var(--blue-color);
     color: white;
     border: none;
@@ -198,6 +227,6 @@ img {
     cursor: pointer;
 }
 
-#ok-button:hover {
+#ok-button:hover, #lose-button:hover {
     background: var(--hover-color);
 }

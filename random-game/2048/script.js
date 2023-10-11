@@ -34,6 +34,7 @@ function restartGame() {
     secondsElapsed = 0;
     menu.setTimer(secondsElapsed);
     startTimer();
+    setupInput();
 }
 
 function backToPreviousMove() {
@@ -161,9 +162,8 @@ async function handleInput(event) {
     if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
         await newTile.waitingToMove();
         stopTimer();
-        alert("Try again");
-        getReward();
-        setupInput();
+        showLose()
+        // setupInput();
         return;
     }
     setupInput();
@@ -284,30 +284,47 @@ function getReward() {
     alert(stopTime);
 }
 
-const modal = document.getElementById('modal');
-const okButton = document.getElementById('ok-button');
-const gameTimeSpan = document.getElementById('game-time');
+const modalCongrats = document.getElementById('modal-congrats'),
+    modalLose = document.getElementById('modal-lose'),
+    okButton = document.getElementById('ok-button'),
+    loseButton = document.getElementById('lose-button'),
+    gameTimeSpan = document.getElementById('game-time'),
+    loseTimeSpan = document.getElementById('lose-time');
 
 function checkFor2048Tile() {
-    cancelInput();
+    // cancelInput();
     for (const cell of grid.cells) {
         if (cell.linkedTile && cell.linkedTile.value === 2048) {
-            showModal();
+            showCongratulations();
             return;
         }
     }
 }
 
-function showModal() {
+function showCongratulations() {
     allowTileMovement = false;
     stopTimer();
     gameTimeSpan.textContent = menu.endTime(secondsElapsed);
-    modal.style.display = 'flex';
-    okButton.addEventListener('click', hideModal);
+    modalCongrats.style.display = 'flex';
+    okButton.addEventListener('click', hideCongratulations);
 }
 
-function hideModal() {
+function hideCongratulations() {
     allowTileMovement = true;
-    modal.style.display = 'none';
+    modalCongrats.style.display = 'none';
+    restartGame();
+}
+
+function showLose() {
+    allowTileMovement = false;
+    stopTimer();
+    loseTimeSpan.textContent = menu.endTime(secondsElapsed);
+    modalLose.style.display = 'flex';
+    loseButton.addEventListener('click', hideLose);
+}
+
+function hideLose() {
+    allowTileMovement = true;
+    modalLose.style.display = 'none';
     restartGame();
 }

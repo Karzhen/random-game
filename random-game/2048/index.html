@@ -9,9 +9,24 @@
 <body>
 <div class="wrapper">
     <main>
+        <div class="rules">
+            <p class="mini-text bold">Правила игры 2048:</p>
+            <ol class="rules__table">
+                <li class="mini-text">Вам необходимо соединять плитки с цифрами путём нажатия на стрелки на клавиатуре</li>
+                <li class="mini-text">При получении плитки со значением 2048 игра останавливается и считается пройденной. Время в таком случае фиксируется</li>
+                <li class="mini-text">При отсутствии ходов игра заканчивается поражением</li>
+            </ol>
+        </div>
         <div id="menu"></div>
         <div id="game-board"></div>
-        <div id="modal" class="modal">
+        <div id="modal-lose" class="modal">
+            <div class="modal-content">
+                <p class="text">К сожалению, Вы проиграли</p>
+                <p class="text">Игра остановлена: <span id="lose-time">00:00</span></p>
+                <button id="lose-button">Начать заново</button>
+            </div>
+        </div>
+        <div id="modal-congrats" class="modal">
             <div class="modal-content">
                 <p class="text">Поздравляю, Вы прошли игру 2048</p>
                 <p class="text">Время прохождения: <span id="game-time">00:00</span></p>
