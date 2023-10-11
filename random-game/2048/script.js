@@ -36,36 +36,31 @@ function restartGame() {
 }
 
 function backToPreviousMove() {
-    console.log(gameStateStack);
     if (gameStateStack.length > 0) {
         const previousState = gameStateStack.pop(); // Получить предыдущее состояние
-        gameStateStack.length = 0 // Удалить текущее состояние
+        gameStateStack.length = 0; // Очистить текущее состояние
 
-        // Восстановление прежнего состояния игрового поля
+        // Сбросить сетку, удалив все плитки
         grid.cells.forEach(cell => {
-            const prevStateCell = previousState.find(prevCell =>
-                prevCell.x === cell.x && prevCell.y === cell.y
+            if (cell.linkedTile) {
+                cell.linkedTile.removeFromDOM();
+                cell.unlinkTile();
+            }
+        });
+
+        // Восстановление предыдущего состояния сетки
+        previousState.forEach(prevStateCell => {
+            const cell = grid.cells.find(
+                cell => cell.x === prevStateCell.x && cell.y === prevStateCell.y
             );
 
-            if (prevStateCell) {
+            if (cell) {
                 if (prevStateCell.value > 0) {
                     // Восстановление плитки
                     const tile = new Tile(gameBoard);
                     tile.setXY(prevStateCell.x, prevStateCell.y);
                     tile.setValue(prevStateCell.value);
                     cell.linkTile(tile);
-                } else {
-                    // Удалить имеющуюся плитку
-                    if (cell.linkedTile) {
-                        cell.linkedTile.removeFromDOM();
-                        cell.unlinkTile();
-                    }
-                }
-            } else {
-                // Удалить имеющуюся плитку
-                if (cell.linkedTile) {
-                    cell.linkedTile.removeFromDOM();
-                    cell.unlinkTile();
                 }
             }
         });
@@ -139,7 +134,10 @@ async function handleInput(event) {
 
     if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
         await newTile.waitingToMove();
+        stopTimer();
         alert("Try again");
+        getReward();
+        setupInput();
         return;
     }
     setupInput();
@@ -253,4 +251,9 @@ function startTimer() {
 
 function stopTimer() {
     clearInterval(timerInterval);
+}
+
+function getReward() {
+    const stopTime = menu.endTime(secondsElapsed);
+    alert(stopTime);
 }

@@ -19,6 +19,7 @@ export class Menu {
         this.timerElement = document.createElement('div');
         this.timerElement.classList.add('timer');
         this.timerElement.classList.add('text');
+        this.timerElement.textContent = "0:00";
         this.leftZone.appendChild(this.timerElement);
 
         // Создание правой зоны для кнопок
@@ -51,6 +52,10 @@ export class Menu {
 
     setTimer(seconds) {
         this.timerElement.textContent = formatTime(seconds);
+    }
+
+    endTime(seconds) {
+        return formatTime(seconds);
     }
 }
 
