@@ -1,9 +1,15 @@
+@font-face {
+    font-family: 'Sofia Sans';
+    src: url('./fonts/Sofia_Sans/static/SofiaSans-Bold.ttf') format('truetype');
+}
+
 :root {
     --back-color: #080C25;
     --blue-color: #161E35;
     --medium-color: #293659;
     --active-color: #3071E7;
     --hover-color: #A6B2EC;
+    --footer-color: #a8a8a8;
 }
 /* Брал цветовую гамму отсюда -> https://cliffe.ru/res/8_dark_color_schemes/ */
 
@@ -22,6 +28,33 @@ body {
     height: 100vh;
 }
 
+.wrapper {
+    flex-grow: 1; /* Растягиваем wrapper, чтобы заполнить оставшееся пространство */
+}
+
+main {
+    height: 85vmin;
+    width: 80vmin;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+button img {
+    width: 38vmin;
+}
+
+button {
+    filter: blur(4px);
+    transition: 1s;
+    cursor: pointer;
+}
+
+button:hover {
+    filter: blur(1px);
+    transition: 1s;
+}
+
 footer {
     background-color: var(--footer-color);
     width: 100vmin;
@@ -35,6 +68,6 @@ footer > .text {
     font-size: 2vmin;
 }
 
-img {
+footer img {
     max-height: 2vmin;
 }

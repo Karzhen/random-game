@@ -39,7 +39,7 @@ export class Cell {
 
     mergeTiles() {
         this.linkedTile.setValue(this.linkedTile.value + this.connectedTile.value);
-        if (this.linkedTile.value > 32) {
+        if (this.linkedTile.value > 511) {
             playSoundBigAchieve();
         } else {
             playSoundAchieve();
