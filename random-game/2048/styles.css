@@ -49,6 +49,27 @@ body {
     left: 1vmin;
 }
 
+.leaderboard {
+    width: 20vmin;
+    position: fixed;
+    top: 20vmin;
+    right: 1vmin;
+}
+
+h2 {
+    font-family: "Sofia Sans", serif;
+    font-size: 4vmin;
+    color: var(--active-color);
+    text-align: right;
+}
+
+.scores {
+    font-family: "Sofia Sans", serif;
+    font-size: 4vmin;
+    color: var(--hover-color);
+    text-align: right;
+}
+
 /*.rules__table {*/
 /*    !*list-style: square;*!*/
 /*    list-style-type: none;*/

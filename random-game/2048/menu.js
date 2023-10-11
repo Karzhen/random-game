@@ -22,6 +22,16 @@ export class Menu {
         this.timerElement.textContent = "0:00";
         this.leftZone.appendChild(this.timerElement);
 
+        // Создание кнопки с выходом в меню выбора игр
+        this.backButton = document.createElement('button');
+        this.backButton.classList.add('mini-text');
+        this.backButton.textContent = 'Вернуться к выбору игр';
+        this.backButton.style.cursor = 'pointer';
+        this.backButton.addEventListener('click', () => {
+            window.location.href = 'https://rolling-scopes-school.github.io/karzhen-JSFEPRESCHOOL2023Q2/random-game/';
+        })
+        this.leftZone.appendChild(this.backButton);
+
         // Создание правой зоны для кнопок
         this.rightZone = document.createElement('div');
         this.rightZone.classList.add('right-zone');

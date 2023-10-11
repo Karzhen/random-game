@@ -39,7 +39,22 @@ export class Cell {
 
     mergeTiles() {
         this.linkedTile.setValue(this.linkedTile.value + this.connectedTile.value);
+        if (this.linkedTile.value > 32) {
+            playSoundBigAchieve();
+        } else {
+            playSoundAchieve();
+        }
         this.connectedTile.removeFromDOM();
         this.unlinkTileAfterConnect();
     }
+}
+
+function playSoundAchieve() {
+    const audio = document.getElementById("audioAchieve");
+    audio.play();
+}
+
+function playSoundBigAchieve() {
+    const audio = document.getElementById("audioBigAchieve");
+    audio.play();
 }

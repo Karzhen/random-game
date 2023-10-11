@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <title>2048</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="media.css">
     <script src="script.js" type="module"></script>
 </head>
 <body>
 <div class="wrapper">
+    <audio id="audioWhoosh">
+        <source src="./music/whoosh.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audioAchieve">
+        <source src="./music/achieve.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="audioBigAchieve">
+        <source src="./music/big-achieve.mp3" type="audio/mpeg">
+    </audio>
     <main>
         <div class="rules">
             <p class="mini-text bold">Правила игры 2048:</p>
@@ -19,6 +29,10 @@
         </div>
         <div id="menu"></div>
         <div id="game-board"></div>
+        <div class="leaderboard">
+            <h2>Top Scores</h2>
+            <ul id="top-scores-list"></ul>
+        </div>
         <div id="modal-lose" class="modal">
             <div class="modal-content">
                 <p class="text">К сожалению, Вы проиграли</p>

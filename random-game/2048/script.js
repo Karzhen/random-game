@@ -86,6 +86,7 @@ function saveGameState() {
 }
 
 // Запуск таймера при начале игры
+updateLeaderBoard();
 startTimer();
 setupInput();
 
@@ -193,6 +194,9 @@ async function slideTiles(groupedCells) {
 
     grid.cells.forEach(cell => {
         cell.readyForMerge() && cell.mergeTiles();
+        if (!cell.readyForMerge()) {
+            playSoundWhoosh();
+        }
     })
 }
 
@@ -304,9 +308,12 @@ function checkFor2048Tile() {
 function showCongratulations() {
     allowTileMovement = false;
     stopTimer();
-    gameTimeSpan.textContent = menu.endTime(secondsElapsed);
+    const timeFinish = menu.endTime(secondsElapsed);
+    gameTimeSpan.textContent = timeFinish;
+    storeLeaderBoard(timeFinish);
     modalCongrats.style.display = 'flex';
     okButton.addEventListener('click', hideCongratulations);
+    updateLeaderBoard();
 }
 
 function hideCongratulations() {
@@ -327,4 +334,51 @@ function hideLose() {
     allowTileMovement = true;
     modalLose.style.display = 'none';
     restartGame();
+}
+
+function playSoundWhoosh() {
+    const audio = document.getElementById("audioWhoosh");
+    audio.play();
+}
+
+function storeLeaderBoard(timeFinish) {
+    const topScores = getTopScore();
+    topScores.push(timeFinish);
+    topScores.sort((a, b) => compareScores(a, b));
+    topScores.length = Math.min(topScores.length, 5);
+
+    localStorage.setItem('topScores', JSON.stringify(topScores));
+}
+
+function getTopScore() {
+    const topScoresJSON = localStorage.getItem('topScores');
+    return topScoresJSON ? JSON.parse(topScoresJSON) : [];
+}
+
+function compareScores(timeA, timeB) {
+    const [minutesA, secondsA] = timeA.split(':').map(Number);
+    const [minutesB, secondsB] = timeB.split(':').map(Number);
+
+    const timeSecA = minutesA * 60 + secondsA;
+    const timeSecB = minutesB * 60 + secondsB;
+
+    return timeSecA - timeSecB;
+}
+
+function updateLeaderBoard() {
+// mini-text
+    const topScores = getTopScore();
+
+    console.log(`Top scores: ${topScores}`);
+
+    const topScoresList = document.getElementById('top-scores-list');
+    topScoresList.innerHTML = '';
+
+    topScores.forEach((score, index) => {
+        const newListItem = document.createElement('li');
+        newListItem.classList.add('scores');
+        // newListItem.textContent = `${index + 1}. ${score}`;
+        newListItem.textContent = ` ${score}`;
+        topScoresList.appendChild(newListItem);
+    })
 }

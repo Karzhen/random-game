@@ -13,10 +13,28 @@
     padding: 0;
 }
 
-
+body {
+    background-color: var(--back-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
 footer {
+    background-color: var(--footer-color);
+    width: 100vmin;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+footer > .text {
+    color: black;
+    font-size: 2vmin;
+}
+
+img {
+    max-height: 2vmin;
 }
