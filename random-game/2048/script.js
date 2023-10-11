@@ -1,6 +1,6 @@
-import { Menu } from "./menu.js";
-import { Grid } from "./grid.js";
-import { Tile } from "./tile.js";
+import {Menu} from "./menu.js";
+import {Grid} from "./grid.js";
+import {Tile} from "./tile.js";
 
 let timerInterval;
 let secondsElapsed = 0;
@@ -95,6 +95,7 @@ async function handleInput(event) {
             }
             saveGameState();
             await moveUp();
+            checkFor2048Tile();
             break;
 
         case "ArrowDown":
@@ -104,6 +105,7 @@ async function handleInput(event) {
             }
             saveGameState();
             await moveDown();
+            checkFor2048Tile();
             break;
 
         case "ArrowLeft":
@@ -113,6 +115,7 @@ async function handleInput(event) {
             }
             saveGameState();
             await moveLeft();
+            checkFor2048Tile();
             break;
 
         case "ArrowRight":
@@ -122,6 +125,7 @@ async function handleInput(event) {
             }
             saveGameState();
             await moveRight();
+            checkFor2048Tile();
             break;
 
         default:
@@ -256,4 +260,29 @@ function stopTimer() {
 function getReward() {
     const stopTime = menu.endTime(secondsElapsed);
     alert(stopTime);
+}
+
+const modal = document.getElementById('modal');
+const okButton = document.getElementById('ok-button');
+const gameTimeSpan = document.getElementById('game-time');
+
+function checkFor2048Tile() {
+    for (const cell of grid.cells) {
+        if (cell.linkedTile && cell.linkedTile.value === 32) {
+            showModal();
+            return;
+        }
+    }
+}
+
+function showModal() {
+    stopTimer();
+    gameTimeSpan.textContent = menu.endTime(secondsElapsed);
+    modal.style.display = 'flex';
+    okButton.addEventListener('click', hideModal);
+}
+
+function hideModal() {
+    modal.style.display = 'none';
+    restartGame();
 }

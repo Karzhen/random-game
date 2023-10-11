@@ -22,6 +22,9 @@ export class Tile {
         this.tile.textContent = value;
         const backGroundTile = `--color-${value}`;
         this.tile.style.backgroundColor = `var(${backGroundTile})`;
+        if (value === 2048) {
+            alert("mazafaka");
+        }
     }
 
     removeFromDOM() {
