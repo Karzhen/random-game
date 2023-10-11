@@ -85,6 +85,7 @@ button {
 button:hover {
     background-color: var(--hover-color);
     transition: 1s;
+    cursor: pointer;
 }
 
 #game-board {
@@ -151,6 +152,17 @@ img {
     }
 }
 
+@keyframes opacityOnOff {
+    0% {
+        opacity: 1;
+        transition: 1s;
+    }
+    100% {
+        opacity: 0;
+        transition: 1s;
+    }
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -166,7 +178,7 @@ img {
 }
 
 .modal-content {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.7);
     padding: 20px;
     text-align: center;
     border-radius: 8px;

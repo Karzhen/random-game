@@ -4,6 +4,7 @@ import {Tile} from "./tile.js";
 
 let timerInterval;
 let secondsElapsed = 0;
+let allowTileMovement = true;
 
 const gameBoard = document.getElementById('game-board'),
     gameMenu = document.getElementById('menu');
@@ -39,6 +40,12 @@ function backToPreviousMove() {
     if (gameStateStack.length > 0) {
         const previousState = gameStateStack.pop(); // Получить предыдущее состояние
         gameStateStack.length = 0; // Очистить текущее состояние
+
+        menu.undoButton.style.opacity = '0';
+        menu.undoButton.style.transition = '1s';
+        menu.undoButton.addEventListener("mouseover", function() {
+            menu.undoButton.style.cursor = "default";
+        })
 
         // Сбросить сетку, удалив все плитки
         grid.cells.forEach(cell => {
@@ -85,8 +92,23 @@ function setupInput() {
     window.addEventListener('keydown', handleInput, { once: true});
 }
 
+function cancelInput() {
+    window.removeEventListener('keydown', handleInput);
+}
+
 async function handleInput(event) {
-    console.log(gameStateStack);
+    if (!allowTileMovement) {
+        return;
+    }
+
+    // console.log(gameStateStack);
+    if (menu.undoButton.style.opacity === '0') {
+        menu.undoButton.style.opacity = '1';
+        menu.undoButton.style.transition = '1s';
+        menu.undoButton.addEventListener("mouseover", function() {
+            menu.undoButton.style.cursor = "pointer";
+        })
+    }
     switch (event.key) {
         case "ArrowUp":
             if (!canMoveUp()) {
@@ -267,8 +289,9 @@ const okButton = document.getElementById('ok-button');
 const gameTimeSpan = document.getElementById('game-time');
 
 function checkFor2048Tile() {
+    cancelInput();
     for (const cell of grid.cells) {
-        if (cell.linkedTile && cell.linkedTile.value === 32) {
+        if (cell.linkedTile && cell.linkedTile.value === 2048) {
             showModal();
             return;
         }
@@ -276,6 +299,7 @@ function checkFor2048Tile() {
 }
 
 function showModal() {
+    allowTileMovement = false;
     stopTimer();
     gameTimeSpan.textContent = menu.endTime(secondsElapsed);
     modal.style.display = 'flex';
@@ -283,6 +307,7 @@ function showModal() {
 }
 
 function hideModal() {
+    allowTileMovement = true;
     modal.style.display = 'none';
     restartGame();
 }
