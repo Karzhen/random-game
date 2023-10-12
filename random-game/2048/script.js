@@ -298,7 +298,7 @@ const modalCongrats = document.getElementById('modal-congrats'),
 function checkFor2048Tile() {
     // cancelInput();
     for (const cell of grid.cells) {
-        if (cell.linkedTile && cell.linkedTile.value === 512) {
+        if (cell.linkedTile && cell.linkedTile.value === 2048) {
             showCongratulations();
             return;
         }
