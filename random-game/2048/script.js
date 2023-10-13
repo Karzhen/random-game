@@ -181,7 +181,10 @@ function handleTouchStart(event) {
 }
 
 async function handleTouchMove(event) {
-    if (!startX || !startY) return;
+    if (!startX || !startY) {
+        startX = startY = null;
+        return;
+    }
 
     const touch = event.touches[0];
     const deltaX = touch.clientX - startX;

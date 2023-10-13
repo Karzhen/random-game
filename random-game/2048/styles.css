@@ -29,6 +29,10 @@
     padding: 0;
 }
 
+html, body {
+    overflow: hidden;
+}
+
 body {
     background-color: var(--back-color);
     display: flex;
