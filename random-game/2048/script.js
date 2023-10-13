@@ -92,6 +92,8 @@ setupInput();
 
 function setupInput() {
     window.addEventListener('keydown', handleInput, { once: true});
+    gameBoard.addEventListener('touchstart', handleTouchStart, false);
+    gameBoard.addEventListener('touchmove', handleTouchMove, false);
 }
 
 function cancelInput() {
@@ -168,6 +170,64 @@ async function handleInput(event) {
         return;
     }
     setupInput();
+}
+
+let startX, startY;
+
+function handleTouchStart(event) {
+    const touch = event.touches[0];
+    startX = touch.clientX;
+    startY = touch.clientY;
+}
+
+async function handleTouchMove(event) {
+    if (!startX || !startY) return;
+
+    const touch = event.touches[0];
+    const deltaX = touch.clientX - startX;
+    const deltaY = touch.clientY - startY;
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        if (deltaX > 0) {
+            if (!canMoveRight()) {
+                setupInput();
+                return;
+            }
+            saveGameState();
+            await moveRight();
+            checkFor2048Tile();
+        } else {
+            if (!canMoveLeft()) {
+                setupInput();
+                return;
+            }
+            saveGameState();
+            await moveLeft();
+            checkFor2048Tile();
+        }
+    } else {
+        if (deltaY > 0) {
+            if (!canMoveDown()) {
+                setupInput();
+                return;
+            }
+            saveGameState();
+            await moveDown();
+            checkFor2048Tile();
+        } else {
+            if (!canMoveUp()) {
+                setupInput();
+                return;
+            }
+            saveGameState();
+            await moveUp();
+            checkFor2048Tile();
+        }
+    }
+
+    event.preventDefault();
+
+    startX = startY = null;
 }
 
 async function moveUp() {
